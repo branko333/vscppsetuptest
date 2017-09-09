@@ -1,0 +1,37 @@
+{
+    // https://code.visualstudio.com/docs/languages/cpp
+    // pronalazak putanje do debugger-a: $ which gcc - https://www.cyberciti.biz/faq/locate-linux-gnu-c-or-gcc-compiler-location/
+        "version": "0.2.0",
+        "configurations": [
+            { 
+                "name": "(gdb) Attach",
+                "type": "cppdbg",
+                "request": "attach",
+                "program": "${workspaceRoot}/a.exe",
+                "processId": "${command:pickProcess}",
+                "MIMode": "gdb",
+                "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe"
+            },
+            {
+                "name": "(gdb) Launch",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceRoot}/a.exe", // putanja do exe-a npr. D:/Users/MB/Desktop/cppdebugtest/a.exe, ${workspaceRoot} je globalna varijabla koja pokazuje na ovo isto
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${workspaceRoot}", // workspace (ne znam tacno sta je ali neka ostane root projekta, globalna varijabla ili D:/Users/MB/Desktop/cppdebugtest/)
+                "environment": [],
+                "externalConsole": true,
+                "MIMode": "gdb",
+                "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe", // path do debugger-a obično u istom folderu kao kompajler
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+                "preLaunchTask": "build our app"
+            }
+        ]
+    }
